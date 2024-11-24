@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import messagebox
-import translation
+import random 
 
 # Function to read a file and return a list of tuples
 def load_translation_file(file_path):
@@ -54,6 +54,7 @@ class TranslationQuiz:
         self.player_scores = [0, 0]  # Scores for Player 1 and Player 2
         self.current_player = 0 # 0 for Player 1, 1 for Player 2
         self.correct_answer = None
+        self.question = ""
 
         # Frames pages
         self.home_frame = ctk.CTkFrame(root)
@@ -106,13 +107,24 @@ class TranslationQuiz:
         self.current_question = 0
         self.show_frame(self.quiz_frame)
         self.display_question()
-    
+
+    def display_question(self):
+        """Displays the current question."""
+        # question = self.questions[self.current_question]
+
+        language_data = master_data[self.selected_language]
+        random_index = random.randint(0, len(language_data) - 1)
+        self.question, self.correct_answer = language_data[random_index]
+
+        self.question_label.config(text=f"Translate this: {self.question}")
+        self.answer_entry.delete(0, ctk.END)  # Clear the entry box
+
     def create_quiz_screen(self):
         """Creates the quiz screen with translation input."""
-        self.player_label = ctk.CTkLabel(self.quiz_frame, text="Player 1's Turn", font=("Arial", 16), text_color="white")
+        self.player_label = ctk.CTkLabel(self.quiz_frame, text=f"Translate this: {self.question}", font=("Arial", 16), text_color="white")
         self.player_label.pack(pady=10)
 
-        self.question_label = ctk.CTkLabel(self.quiz_frame, text="", font=("Arial", 16), wraplength=400)
+        self.question_label = ctk.CTkLabel(self.quiz_frame, text=self.question, font=("Arial", 16), wraplength=400)
         self.question_label.pack(pady=20)
 
         self.answer_entry = ctk.CTkEntry(self.quiz_frame, font=("Arial", 14))
@@ -121,24 +133,23 @@ class TranslationQuiz:
         self.next_button = ctk.CTkButton(self.quiz_frame, text="Next", font=("Arial", 14), command=self.next_question)
         self.next_button.pack(pady=20)
 
-    def display_question(self):
-        """Displays the current question."""
-        # question = self.questions[self.current_question]
+        # x = random.randint(0, 50)
 
-        if self.selected_language == "Français":
-            question, self.correct_answer = translation.generate_sentences('french')
-        elif self.selected_language == "Español":
-            question, self.correct_answer = translation.generate_sentences('spanish')
-        elif self.selected_language == "Deutsch":
-            question, self.correct_answer = translation.generate_sentences('german')
-        elif self.selected_language == "日本語":
-            question, self.correct_answer = translation.generate_sentences('japanese')
-        elif self.selected_language == "中文":
-            question, self.correct_answer = translation.generate_sentences('mandarin')
+        # if self.selected_language == "Français":
+        #     question, self.correct_answer = master_data['french'][x]
+        # elif self.selected_language == "Español":
+        #     question, self.correct_answer = master_data['spanish'][x]
+        # elif self.selected_language == "Deutsch":
+        #     question, self.correct_answer = master_data['german'][x]
+        #     print(question)
+        # elif self.selected_language == "日本語":
+        #     question, self.correct_answer = master_data['japanese'][x]
+        # elif self.selected_language == "中文":
+        #     question, self.correct_answer = master_data['mandarin'][x]
 
-        self.question_label.config(text=f"Translate this: {question}")
-        self.question_label.pack(pady=10)
-        self.answer_entry.delete(0, ctk.END)  # Clear the entry box
+        # self.question_label.config(text=f"Translate this: {question}")
+        # self.question_label.pack(pady=10)
+        # self.answer_entry.delete(0, ctk.END)  # Clear the entry box
 
     def next_question(self):
         """Validates the translation and proceeds to the next question."""
