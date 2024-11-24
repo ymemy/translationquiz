@@ -12,15 +12,15 @@ class TranslationQuiz:
         self.root = root
         self.root.title("Who's the best translator?")
         self.root.geometry("600x400")
-        '''
+        
         self.translation_data = {
-            "What is your name?": {"French": "Comment vous appelez-vous?", "Spanish": "¿Cómo te llamas?"},
-            "Good morning": {"French": "Bonjour", "Spanish": "Buenos días"},
-            "Thank you": {"French": "Merci", "Spanish": "Gracias"}
+            "What is your name?": {"Français": "Comment vous appelez-vous?", "Español": "¿Cómo te llamas?"},
+            "Good morning": {"Français": "Bonjour", "Español": "Buenos días"},
+            "Thank you": {"French": "Merci", "Español": "Gracias"}
         }
         
         self.questions = list(self.translation_data.keys())
-        '''
+        
         self.selected_language = None
 
         self.current_question = 0
@@ -96,18 +96,18 @@ class TranslationQuiz:
 
     def display_question(self):
         """Displays the current question."""
-        # question = self.questions[self.current_question]
+        question = self.questions[self.current_question]
 
-        if self.selected_language == "Français":
-            question, self.correct_answer = translation.generate_sentences('french')
-        elif self.selected_language == "Español":
-            question, self.correct_answer = translation.generate_sentences('spanish')
-        elif self.selected_language == "Deutsch":
-            question, self.correct_answer = translation.generate_sentences('german')
-        elif self.selected_language == "日本語":
-            question, self.correct_answer = translation.generate_sentences('japanese')
-        elif self.selected_language == "中文":
-            question, self.correct_answer = translation.generate_sentences('mandarin')
+        # if self.selected_language == "Français":
+        #     question, self.correct_answer = translation.generate_sentences('french')
+        # elif self.selected_language == "Español":
+        #     question, self.correct_answer = translation.generate_sentences('spanish')
+        # elif self.selected_language == "Deutsch":
+        #     question, self.correct_answer = translation.generate_sentences('german')
+        # elif self.selected_language == "日本語":
+        #     question, self.correct_answer = translation.generate_sentences('japanese')
+        # elif self.selected_language == "中文":
+        #     question, self.correct_answer = translation.generate_sentences('mandarin')
 
         self.question_label.config(text=f"Translate this: {question}")
         self.question_label.pack(pady=10)
@@ -116,10 +116,10 @@ class TranslationQuiz:
     def next_question(self):
         """Validates the translation and proceeds to the next question."""
         player_input = self.answer_entry.get().strip()
-        # question = self.questions[self.current_question]
-        # correct_translation = self.translation_data[question][self.selected_language]
+        question = self.questions[self.current_question]
+        correct_translation = self.translation_data[question][self.selected_language]
 
-        if player_input.lower() == self.correct_answer.lower():
+        if player_input.lower() == correct_translation.lower():
             self.player_scores[self.current_player] += 1
 
         # Switch players and move to the next question
@@ -137,7 +137,12 @@ class TranslationQuiz:
             self.show_results()
 
     def create_gameover_screen(self):
-        pass
+        """Creates the game over screen."""
+        self.player_label = ctk.CTkLabel(self.quiz_frame, text="Game Over", font=("Arial", 16), text_color="white")
+        self.player_label.pack(pady=10)
+
+        self.next_button = ctk.CTkButton(self.quiz_frame, text="Next", font=("Arial", 14), command=self.next_question)
+        self.next_button.pack(pady=20)
 
     def show_results(self):
         """Displays the final results and exits the program."""
