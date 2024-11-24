@@ -2,6 +2,33 @@ import customtkinter as ctk
 from tkinter import messagebox
 import translation
 
+# Function to read a file and return a list of tuples
+def load_translation_file(file_path):
+    translations = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        for line in file:
+            # Assuming the file format is like (key, value)
+            line = line.strip().strip('()')
+            pair = tuple(line.split(', '))
+            translations.append(pair)
+    return translations
+
+# File paths for each language dataset
+files = {
+    'french': 'words/french.txt',
+    'spanish': 'words/spanish.txt',
+    'german': 'words/german.txt',
+    'japanese': 'words/japanese.txt',
+    'mandarin': 'words/mandarin.txt'
+}
+
+# Master dictionary to store translations for each language
+master_data = {}
+
+# Load data for each language into the master dictionary
+for language, file_path in files.items():
+    master_data[language] = load_translation_file(file_path)
+
 class TranslationQuiz:
     def __init__(self, root):
         #appearance

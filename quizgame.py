@@ -2,6 +2,11 @@ import customtkinter as ctk
 from tkinter import messagebox
 import translation
 
+language_data = {}
+
+with open('words/french.txt') as french_file:
+    french_data = french_file.read()
+
 class TranslationQuiz:
     def __init__(self, root):
         #appearance
