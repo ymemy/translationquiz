@@ -1,0 +1,17 @@
+import tkinter as tk
+
+root = tk.Tk()
+root.geometry("300x200")
+
+# Create a frame
+frame = tk.Frame(root, bg="lightgray", width=300, height=100)
+frame.pack(padx=10, pady=10)
+
+# Add widgets inside the frame
+label = tk.Label(frame, text="This is a frame")
+label.pack(pady=10)
+
+button = tk.Button(frame, text="Click Me")
+button.pack()
+
+root.mainloop()
