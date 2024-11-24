@@ -73,7 +73,7 @@ class TranslationQuiz:
     
     def create_quiz_screen(self):
         """Creates the quiz screen with translation input."""
-        self.player_label = ctk.CTkLabel(self.quiz_frame, text="Player 1's Turn", font=("Arial", 16), text_color="blue")
+        self.player_label = ctk.CTkLabel(self.quiz_frame, text="Player 1's Turn", font=("Arial", 16), text_color="white")
         self.player_label.pack(pady=10)
 
         self.question_label = ctk.CTkLabel(self.quiz_frame, text="", font=("Arial", 16), wraplength=400)
