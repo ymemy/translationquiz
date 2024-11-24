@@ -3,26 +3,30 @@ from tkinter import messagebox
 
 class TranslationQuiz:
     def __init__(self, root):
+        #appearance
         ctk.set_appearance_mode("System")
         ctk.set_default_color_theme("blue")
 
+        #box
         self.root = root
         self.root.title("Who's the best translator?")
         self.root.geometry("600x400")
-
+        '''
         self.translation_data = {
             "What is your name?": {"French": "Comment vous appelez-vous?", "Spanish": "¿Cómo te llamas?"},
             "Good morning": {"French": "Bonjour", "Spanish": "Buenos días"},
             "Thank you": {"French": "Merci", "Spanish": "Gracias"}
         }
+        
         self.questions = list(self.translation_data.keys())
+        '''
         self.selected_language = None
 
         self.current_question = 0
         self.player_scores = [0, 0]  # Scores for Player 1 and Player 2
         self.current_player = 0 # 0 for Player 1, 1 for Player 2
 
-        # Frames
+        # Frames pages
         self.home_frame = ctk.CTkFrame(root)
         self.quiz_frame = ctk.CTkFrame(root)
         
