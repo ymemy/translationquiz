@@ -1,7 +1,3 @@
-generated_sentence, translated_sentence = generate_sentences(language)
-print(f"Generated sentence in {language.capitalize()}: {generated_sentence}")
-print(f"Translated to English: {translated_sentence}")
-
 from transformers import MarianMTModel, MarianTokenizer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -77,7 +73,7 @@ def generate_sentences(language):
     if language not in model_loaders:
         return f"Unsupported language: {language}"
 
-"""Load model and tokenizer"""
+    """Load model and tokenizer"""
     tokenizer, model = model_loaders[language]()
 
     input_prompt = f"Please generate a sentence in {language}: "
