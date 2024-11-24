@@ -13,13 +13,13 @@ class TranslationQuiz:
         self.root.title("Who's the best translator?")
         self.root.geometry("600x400")
         
-        self.translation_data = {
-            "What is your name?": {"Français": "Comment vous appelez-vous?", "Español": "¿Cómo te llamas?"},
-            "Good morning": {"Français": "Bonjour", "Español": "Buenos días"},
-            "Thank you": {"French": "Merci", "Español": "Gracias"}
-        }
+        # self.translation_data = {
+        #     "What is your name?": {"Français": "Comment vous appelez-vous?", "Español": "¿Cómo te llamas?"},
+        #     "Good morning": {"Français": "Bonjour", "Español": "Buenos días"},
+        #     "Thank you": {"French": "Merci", "Español": "Gracias"}
+        # }
         
-        self.questions = list(self.translation_data.keys())
+        # self.questions = list(self.translation_data.keys())
         
         self.selected_language = None
 
@@ -96,18 +96,18 @@ class TranslationQuiz:
 
     def display_question(self):
         """Displays the current question."""
-        question = self.questions[self.current_question]
+        # question = self.questions[self.current_question]
 
-        # if self.selected_language == "Français":
-        #     question, self.correct_answer = translation.generate_sentences('french')
-        # elif self.selected_language == "Español":
-        #     question, self.correct_answer = translation.generate_sentences('spanish')
-        # elif self.selected_language == "Deutsch":
-        #     question, self.correct_answer = translation.generate_sentences('german')
-        # elif self.selected_language == "日本語":
-        #     question, self.correct_answer = translation.generate_sentences('japanese')
-        # elif self.selected_language == "中文":
-        #     question, self.correct_answer = translation.generate_sentences('mandarin')
+        if self.selected_language == "Français":
+            question, self.correct_answer = translation.generate_sentences('french')
+        elif self.selected_language == "Español":
+            question, self.correct_answer = translation.generate_sentences('spanish')
+        elif self.selected_language == "Deutsch":
+            question, self.correct_answer = translation.generate_sentences('german')
+        elif self.selected_language == "日本語":
+            question, self.correct_answer = translation.generate_sentences('japanese')
+        elif self.selected_language == "中文":
+            question, self.correct_answer = translation.generate_sentences('mandarin')
 
         self.question_label.config(text=f"Translate this: {question}")
         self.question_label.pack(pady=10)
