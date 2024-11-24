@@ -29,9 +29,11 @@ class TranslationQuiz:
         # Frames pages
         self.home_frame = ctk.CTkFrame(root)
         self.quiz_frame = ctk.CTkFrame(root)
-        
+        self.gameover_frame = ctk.CTkFrame(root)
+
         self.create_home_screen()
         self.create_quiz_screen()
+        self.create_gameover_screen()
         
         self.show_frame(self.home_frame)  # Show the home screen initially
 
