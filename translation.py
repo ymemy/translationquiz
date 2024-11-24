@@ -107,6 +107,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # ... (other functions remain the same)
 
+<<<<<<< HEAD
 def translate_to_english(text):
     """Translate text to English with additional checks."""
     try:
@@ -140,3 +141,10 @@ if __name__ == "__main__":
             print(f"Translated to English: {translated_word}")
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+=======
+# language = input("Language:")
+# generated_sentence, translated_sentence = generate_sentences(language)
+# print(f"Generated sentence {language.capitalize()}: {generated_sentence}")
+# print(f"Translated to English: {translated_sentence}")
+
+>>>>>>> a89a216298b1caa3699c71154eb7ec69bc777404
